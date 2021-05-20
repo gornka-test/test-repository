@@ -6,7 +6,7 @@ try:
     browser = webdriver.Chrome()
     browser.get(link)
 
-    username = browser.find_element_by_name("username1")
+    username = browser.find_element_by_name("username")
     username.send_keys("admin")
 
     password = browser.find_element_by_name("password")
