@@ -31,7 +31,19 @@ try:
         assert (zones == sorted(zones))
         browser.back()
 
+    browser.get(link2)
+    browser.implicitly_wait(10)
 
+    zones_number = len(browser.find_elements_by_css_selector("tr.row"))
+
+    while zones_number:
+        zones_number -= 1
+        country = browser.find_elements_by_css_selector("td:nth-child(3)>a")
+        country[zones_number].click()
+        zones = [i.get_attribute("textContent") for i in
+                 browser.find_elements_by_css_selector("td:nth-child(3)>select option[selected]")]
+        assert (zones == sorted(zones))
+        browser.back()
 
 
 finally:
