@@ -3,12 +3,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 
 try:
-    link = "http://localhost/"
+    link1 = "http://localhost/admin/?app=countries&doc=countries/"
+    link2 = 'http://localhost/admin/?app=geo_zones&doc=geo_zones/'
     browser = webdriver.Chrome()
     browser.get(link)
     wait = WebDriverWait(browser, 10)
 
-    products = browser.find_elements_by_css_selector("li.product") 
+    products = browser.find_elements_by_css_selector("li.product")
     for item in products:
         stickers = item.find_elements_by_css_selector('.sticker')
         assert (len(stickers) == 1)

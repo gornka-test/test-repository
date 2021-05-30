@@ -19,21 +19,19 @@ try:
         listCountries.append(countries[country].get_attribute('textContent'))
     assert (listCountries == sorted(listCountries))
 
-    zone = browser.find_elements_by_css_selector('td:nth-child(6)')
+    listZones = [i.text for i in browser.find_elements_by_css_selector("td:nth-child(6)")]
+    indexZones = [listZones.index(i) for i in listZones if i != '0']
+
+    for zoneZero in indexZones:
+        country = browser.find_elements_by_css_selector("td:nth-child(5)>a")
+        country[zoneZero].click()
+        zones = [i.get_attribute("textContent") for i in
+                 browser.find_elements_by_css_selector("#table-zones tr>td:nth-child(3)") if
+                 i.get_attribute("textContent") != ""]
+        assert (zones == sorted(zones))
+        browser.back()
 
 
-    for element in range(len(zone)):
-        browser.implicitly_wait(2)
-        if zone[element].text != '0':
-            zone1 = browser.find_elements_by_css_selector('td:nth-child(5)>a')
-            zone1[element].click()
-
-            zones = browser.find_elements_by_css_selector("#table-zones tr>td:nth-child(3) [type=hidden]")
-            listZones = []
-            for elementZone in range(len(zones)):
-                listZones.append(zones[elementZone].get_attribute('textContent'))
-                assert (listZones == sorted(listZones))
-                browser.back()
 
 
 finally:
