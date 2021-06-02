@@ -3,8 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 
 try:
-    link1 = "http://localhost/admin/?app=countries&doc=countries/"
-    link2 = 'http://localhost/admin/?app=geo_zones&doc=geo_zones/'
+    link1 = "http://localhost/en/"
     browser = webdriver.Chrome()
     browser.get(link)
     wait = WebDriverWait(browser, 10)
