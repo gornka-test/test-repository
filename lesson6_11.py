@@ -47,7 +47,6 @@ try:
     browser.find_element_by_css_selector('#box-account li:last-of-type a').click()
 
 
-
 finally:
 
     time.sleep(5)
