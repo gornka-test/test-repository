@@ -34,7 +34,7 @@ browser = webdriver.Chrome()
 wait = WebDriverWait(browser, 10)
 
 authorization(browser)
-open_window(browser, wait)
+open_window(browser, wait) 
 
 time.sleep(5)
 browser.quit()
