@@ -21,12 +21,14 @@ def open_window(browser, wait):
     current_window = browser.current_window_handle
     for link in range(len(list_external)):
         list_external[link].click()
-        new_window = [i for i in browser.window_handles if i != current_window]
-        wait.until(EC.new_window_is_opened(new_window))
+        current_handles = [i for i in browser.window_handles if i != current_window]
 
-        for window in new_window:
+        wait.until(EC.new_window_is_opened(current_handles))
+
+        for window in current_handles:
             browser.switch_to.window(window)
             browser.close()
+            time.sleep(3)
         browser.switch_to.window(current_window)
 
 
@@ -34,7 +36,7 @@ browser = webdriver.Chrome()
 wait = WebDriverWait(browser, 10)
 
 authorization(browser)
-open_window(browser, wait) 
+open_window(browser, wait)
 
 time.sleep(5)
 browser.quit()
